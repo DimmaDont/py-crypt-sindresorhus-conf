@@ -1,0 +1,30 @@
+name: CI
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - run: pip install -r requirements.txt
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - run: npm i conf
+
+      - name: Generate conf output
+        run: node tests/main.mjs
+
+      - name: Run Tests
+        shell: bash
+        run: |
+          python -m unittest discover -s tests

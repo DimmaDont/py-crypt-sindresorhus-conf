@@ -1,0 +1,14 @@
+[project]
+name = "crypt-sindresorhus-conf"
+dynamic = ["version"]
+
+description = "Encrypts and decrypts encrypts/decrypts 'sindresorhus/conf' files"
+readme = "README.md"
+
+dependencies = [
+  'cryptography'
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
