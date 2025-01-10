@@ -1,6 +1,6 @@
 # py-crypt-sindresorhus-conf
 
-This Python library encrypts/decrypts `sindresorhus/conf` files.
+This Python library encrypts/decrypts [`sindresorhus/conf`](https://github.com/sindresorhus/conf) and [`sindresorhus/electron-store`](https://github.com/sindresorhus/electron-store) files.
 
 ## Usage example
 ```python
@@ -17,6 +17,7 @@ encrypted = conf_crypt.encrypt(json.dumps({"foo": "bar"}))
 
 ```python
 import json
+
 from crypt_sindresorhus_conf import CryptSindresorhusConf
 
 with open("file.json", "rb") as f:
