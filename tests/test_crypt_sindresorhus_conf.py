@@ -6,9 +6,9 @@ import unittest
 from src.crypt_sindresorhus_conf import CryptSindresorhusConf
 
 
-class TestCryptSindresorhusConf(unittest.TestCase):
+class TestReadConf(unittest.TestCase):
     def setUp(self):
-        subprocess.run(["node", "tests/main.mjs"], check=True)
+        subprocess.run(["node", "tests/conf_write.mjs"], check=True)
 
         with open("key.txt", "rb") as f:
             key = f.read()
@@ -35,6 +35,34 @@ class TestCryptSindresorhusConf(unittest.TestCase):
         self.assertEqual(data["c"], 1)
         self.assertEqual(data["b"], 2)
         self.assertEqual(data["a"], 3)
+
+    def tearDown(self):
+        os.remove("key.txt")
+        os.remove("config.json")
+        os.remove("config_plaintext.json")
+
+
+class TestWriteConf(unittest.TestCase):
+    def setUp(self):
+        key = b"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+
+        with open("key.txt", "wb") as f:
+            f.write(key)
+
+        iv = os.urandom(16)
+        crypt = CryptSindresorhusConf(key, iv)
+
+        self.plaintext = json.dumps({"x": 4, "y": 5, "z": 6}, indent="\t").encode()
+        encrypted = crypt.encrypt(self.plaintext)
+
+        with open("config.json", "wb") as f:
+            f.write(encrypted)
+
+    def test_readable_by_conf(self):
+        subprocess.run(["node", "tests/conf_read.mjs"], check=True)
+        with open("config_plaintext.json", "rb") as f:
+            plaintext = f.read()
+        self.assertEqual(plaintext, self.plaintext)
 
     def tearDown(self):
         os.remove("key.txt")
