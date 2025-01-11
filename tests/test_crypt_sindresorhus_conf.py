@@ -28,6 +28,6 @@ class TestCryptSindresorhusConf(unittest.TestCase):
 
     def test_json(self):
         data = json.loads(self.plaintext)
-        self.assertEqual(data['c'], 1)
-        self.assertEqual(data['b'], 2)
-        self.assertEqual(data['a'], 3)
+        self.assertEqual(data["c"], 1)
+        self.assertEqual(data["b"], 2)
+        self.assertEqual(data["a"], 3)

@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives.padding import PKCS7
 
 
 class CryptSindresorhusConf:
-    def __init__(self, key, iv):
+    def __init__(self, key: bytes, iv: bytes):
         self.iv = iv
         logging.debug("Key:      %d %s", len(key), key.hex())
         logging.debug("IV:       %d %s", len(iv), iv.hex())
@@ -24,14 +24,14 @@ class CryptSindresorhusConf:
 
         self.cipher = Cipher(AES(self.password), CBC(iv))
 
-    def encrypt(self, data):
+    def encrypt(self, data: bytes) -> bytes:
         padder = PKCS7(128).padder()
         padded_data = padder.update(data) + padder.finalize()
         encryptor = self.cipher.encryptor()
         encrypted = encryptor.update(padded_data) + encryptor.finalize()
         return self.iv + b":" + encrypted
 
-    def decrypt(self, data):
+    def decrypt(self, data: bytes) -> bytes:
         decryptor = self.cipher.decryptor()
         # iv and data are separated by a ":"
         decrypted = decryptor.update(data[17:]) + decryptor.finalize()
