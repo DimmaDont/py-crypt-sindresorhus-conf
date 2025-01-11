@@ -2,6 +2,11 @@
 
 This Python library encrypts/decrypts [`sindresorhus/conf`](https://github.com/sindresorhus/conf) and [`sindresorhus/electron-store`](https://github.com/sindresorhus/electron-store) files.
 
+## Installation
+```bash
+pip install git+https://github.com/DimmaDont/py-crypt-sindresorhus-conf@1.0.1
+```
+
 ## Usage example
 ```python
 import json
