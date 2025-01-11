@@ -4,7 +4,7 @@ This Python library encrypts/decrypts [`sindresorhus/conf`](https://github.com/s
 
 ## Installation
 ```bash
-pip install git+https://github.com/DimmaDont/py-crypt-sindresorhus-conf@1.0.1
+pip install git+https://github.com/DimmaDont/py-crypt-sindresorhus-conf
 ```
 
 ## Usage example

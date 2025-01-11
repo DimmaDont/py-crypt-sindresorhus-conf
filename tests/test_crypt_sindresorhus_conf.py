@@ -1,4 +1,6 @@
 import json
+import os
+import subprocess
 import unittest
 
 from src.crypt_sindresorhus_conf import CryptSindresorhusConf
@@ -6,6 +8,8 @@ from src.crypt_sindresorhus_conf import CryptSindresorhusConf
 
 class TestCryptSindresorhusConf(unittest.TestCase):
     def setUp(self):
+        subprocess.run(["node", "tests/main.mjs"], check=True)
+
         with open("key.txt", "rb") as f:
             key = f.read()
 
@@ -31,3 +35,8 @@ class TestCryptSindresorhusConf(unittest.TestCase):
         self.assertEqual(data["c"], 1)
         self.assertEqual(data["b"], 2)
         self.assertEqual(data["a"], 3)
+
+    def tearDown(self):
+        os.remove("key.txt")
+        os.remove("config.json")
+        os.remove("config_plaintext.json")

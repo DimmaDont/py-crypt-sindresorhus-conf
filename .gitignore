@@ -4,6 +4,9 @@ dist/
 **/*.egg-info/
 node_modules/
 
+package.json
+package-lock.json
+
 config.json
 config_plaintext.json
 key.txt
