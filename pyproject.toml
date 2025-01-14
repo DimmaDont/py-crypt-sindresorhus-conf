@@ -2,7 +2,7 @@
 name = "crypt-sindresorhus-conf"
 dynamic = ["version"]
 
-description = "Encrypts and decrypts encrypts/decrypts 'sindresorhus/conf' files"
+description = "Encrypts and decrypts 'sindresorhus/conf' files"
 readme = "README.md"
 
 dependencies = [
