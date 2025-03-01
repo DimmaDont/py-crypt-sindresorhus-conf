@@ -8,19 +8,22 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives.padding import PKCS7
 
 
+logger = logging.getLogger("crypt_sindresorhus_conf")
+
+
 class CryptSindresorhusConf:
     def __init__(self, key: bytes, iv: bytes):
         self.iv = iv
-        logging.debug("Key:      %d %s", len(key), key.hex())
-        logging.debug("IV:       %d %s", len(iv), iv.hex())
+        logger.debug("Key:      %d %s", len(key), key.hex())
+        logger.debug("IV:       %d %s", len(iv), iv.hex())
 
         # js: `iv.toString()` ...
         salt = iv.decode(encoding="utf-8", errors="replace").encode()
-        logging.debug("Salt:     %d %s", len(salt), salt.hex())
+        logger.debug("Salt:     %d %s", len(salt), salt.hex())
 
         kdf = PBKDF2HMAC(algorithm=SHA512(), length=32, salt=salt, iterations=10_000)
         self.password = kdf.derive(key)
-        logging.debug("Password: %d %s", len(self.password), self.password.hex())
+        logger.debug("Password: %d %s", len(self.password), self.password.hex())
 
         self.cipher = Cipher(AES(self.password), CBC(iv))
 
