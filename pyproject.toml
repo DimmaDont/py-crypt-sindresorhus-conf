@@ -5,9 +5,14 @@ dynamic = ["version"]
 description = "Encrypts and decrypts 'sindresorhus/conf' files"
 readme = "README.md"
 
-dependencies = [
+[project.optional-dependencies]
+cryptography = [
   'cryptography'
 ]
+pycryptodome = [
+  'pycryptodome'
+]
+
 
 [build-system]
 requires = ["setuptools>=64", "setuptools-scm>=8"]
