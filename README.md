@@ -12,6 +12,7 @@ pip install "crypt_sindresorhus_conf[pycryptodome] @ git+https://github.com/Dimm
 ```
 
 ## Usage example
+#### Encryption
 ```python
 import json
 import os
@@ -23,7 +24,7 @@ iv = os.urandom(16)
 conf_crypt = CryptSindresorhusConf(key, iv)
 encrypted = conf_crypt.encrypt(json.dumps({"foo": "bar"}))
 ```
-
+#### Decryption
 ```python
 import json
 
