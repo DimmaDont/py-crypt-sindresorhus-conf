@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: latest
 
+      # install and test on latest
       - run: npm i conf
 
       - name: Run Tests
